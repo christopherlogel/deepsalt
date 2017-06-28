@@ -13,6 +13,11 @@ import pickle
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import svm
 
 # Import data
 match_dict_list = pickle.load(open("match_data.p", "rb"))
@@ -55,8 +60,14 @@ for i in xrange(len(match_heroes) / 3):
 
 ####
 
-#clf = LogisticRegression(max_iter=300, solver="sag")
-clf = MLPClassifier()
+# clf = LogisticRegression(max_iter=300, solver="sag")
+#clf = LogisticRegression(max_iter=1000, solver="sag")
+#clf = MLPClassifier()
+#clf = GaussianNB()
+#clf = RandomForestClassifier()
+#clf = GradientBoostingClassifier(n_estimators=300, learning_rate=1.0, max_depth=2, random_state=0)
+#clf = KNeighborsClassifier(n_neighbors=10)
+clf = svm.SVC()
 clf.fit(match_heroes, match_results)
 
 predictions = clf.predict(eval_heroes)
