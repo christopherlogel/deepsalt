@@ -16,13 +16,13 @@ workbook = xlrd.open_workbook("hero_vals.xlsx")
 sheet = workbook.sheet_by_index(0)
 
 # Create the hero list
-heroes = []
+heroes = list()
 
 # Build the list
 for i in range(1, 114):
     # Grab the hero's row & init a list for the hero
     row = sheet.row(i)
-    hero = []
+    hero = list()
 
     # Build the hero's list
     hero.append(row[0].value.encode("ascii", "ignore"))
@@ -35,4 +35,3 @@ for i in range(1, 114):
 
 # Save the hero data
 pickle.dump(heroes, open("hero_list.p", "wb"))
-
