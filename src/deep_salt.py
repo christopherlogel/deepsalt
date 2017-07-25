@@ -8,7 +8,7 @@
 # Copyright:   (c) Christopher Logel
 # -----------------------------------------------------------------------------
 
-# Imports
+""""# Imports
 import pickle
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
@@ -73,3 +73,25 @@ clf.fit(match_heroes, match_results)
 predictions = clf.predict(eval_heroes)
 
 print accuracy_score(eval_results, predictions)
+"""""
+
+# Imports
+import pickle
+
+# Import data
+match_dict_list = pickle.load(open("match_data.p", "rb"))
+hero_list = pickle.load(open("hero_list.p", "rb"))
+
+# Prep Data
+pp_matches = list()
+
+for match in match_dict_list:
+    # Parse heroes
+    radiant_heroes = match["radiant_team"].split(",")
+    dire_heroes = match["dire_team"].split(",")
+
+    # Create team values from hero values
+    radiant_vals = list()
+    dire_vals = list()
+
+    
